@@ -1,0 +1,59 @@
+.product-top img {
+  width: 100%;
+}
+
+.overlay-right {
+  display: block;
+  opacity: 0;
+  position: absolute;
+  top: 10%;
+  margin-left: 0;
+  width: 70px;
+}
+
+.overlay-right .fas {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.475);
+  color: #000;
+  height: 35px;
+  width: 35px;
+  font-size: 20px;
+  padding: 7px;
+  margin: 5% 0;
+  border-bottom: 2px solid rgba(0, 47, 255, 0.63);
+  transition: all ease-in-out 0.2s;
+}
+
+.overlay-right:hover .fas {
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: all ease-in-out 0.4s;
+}
+
+.overlay-right .btn-secondary {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.product-top:hover .overlay-right {
+  opacity: 1;
+  margin-left: 5%;
+  transition: 0.5s;
+}
+
+.product-bottom .fas {
+  color: rgb(0, 47, 255);
+  font-size: 10px;
+}
+
+.product-bottom h3 {
+  margin-top: 3px;
+  border-top: 3px dotted rgba(0, 47, 255, 0.63);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.product-bottom h5 {
+  font-size: 15px;
+  padding-bottom: 10px;
+}
