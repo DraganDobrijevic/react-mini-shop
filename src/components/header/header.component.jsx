@@ -102,6 +102,7 @@ const Header = () => {
           {/* )} */}
         </div>
       </div>
+
       <div className='bottom-nav-bar'>
         <ProductsNav name={'Products'} />
         {infoNav.map((option) => {
