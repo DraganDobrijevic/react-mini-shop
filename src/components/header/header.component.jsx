@@ -97,7 +97,7 @@ const Header = () => {
             </div>
           ) : ( */}
           <Link className='option' to='/signin'>
-            Sing In
+            Sign In
           </Link>
           {/* )} */}
         </div>
