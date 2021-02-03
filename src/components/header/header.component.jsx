@@ -96,7 +96,7 @@ const Header = () => {
               Sing Out
             </div>
           ) : ( */}
-          <Link className='option' to='/signin'>
+          <Link className='option' to='/login'>
             Sign In
           </Link>
           {/* )} */}
