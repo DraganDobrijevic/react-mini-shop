@@ -14,20 +14,24 @@ const Login = () => {
     password: '',
   });
 
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await auth.signInWithEmailAndPassword(email, password);
+      await auth.signInWithEmailAndPassword(
+        emailAndPassword.email,
+        emailAndPassword.password
+      );
       setEmailAndPassword({ email: '', password: '' });
     } catch (error) {
+      alert(error.message);
       console.log(error);
     }
   };
 
-  handleChange = (e) => {
+  const handleChange = (e) => {
     const { value, name } = e.target;
-    setEmailAndPassword({ [name]: value });
+    setEmailAndPassword({ ...emailAndPassword, [name]: value });
   };
 
   return (

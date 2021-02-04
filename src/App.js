@@ -1,4 +1,4 @@
-import { useState, useEffect, userRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/header/header.component';
@@ -12,10 +12,12 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
-  unsubscribeFromAuth = null;
+  let unsubscribeFromAuth = null;
 
   useEffect(() => {
     unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      console.log(userAuth);
+      console.log(userAuth.displayName);
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 

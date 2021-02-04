@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { auth } from '../../firebase/firebase.utils';
+
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 
 import './header.styles.scss';
@@ -10,7 +12,8 @@ import { FaShoppingBasket } from 'react-icons/fa';
 import ProductsNav from '../products-nav/products-nav.component';
 import InfoNav from '../info-nav/info-nav.component';
 
-const Header = () => {
+const Header = ({ currentUser }) => {
+  console.log(currentUser);
   const [infoNav, setInfoNav] = useState([
     {
       id: 1,
@@ -91,15 +94,15 @@ const Header = () => {
           <Link className='option' to='/register'>
             Register
           </Link>
-          {/* {currentUser ? (
+          {currentUser !== null ? (
             <div className='option' onClick={() => auth.signOut()}>
-              Sing Out
+              Sing Out + {currentUser.displayName}
             </div>
-          ) : ( */}
-          <Link className='option' to='/login'>
-            Sign In
-          </Link>
-          {/* )} */}
+          ) : (
+            <Link className='option' to='/login'>
+              Sign In + {currentUser.displayName}
+            </Link>
+          )}
         </div>
       </div>
 

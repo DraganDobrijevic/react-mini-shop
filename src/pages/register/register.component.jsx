@@ -16,7 +16,7 @@ const Register = () => {
     confirmPassword: '',
   });
 
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { displayName, email, password, confirmPassword } = registerInfo;
@@ -34,6 +34,8 @@ const Register = () => {
 
       await createUserProfileDocument(user, { displayName });
 
+      console.log(registerInfo);
+
       setRegisterInfo({
         displayName: '',
         email: '',
@@ -41,14 +43,15 @@ const Register = () => {
         confirmPassword: '',
       });
     } catch (error) {
-      console.error(error);
+      alert(error.message);
+      console.error(error.message);
     }
   };
 
-  handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setRegisterInfo({ [name]: value });
+    setRegisterInfo({ ...registerInfo, [name]: value });
   };
 
   const { displayName, email, password, confirmPassword } = registerInfo;
