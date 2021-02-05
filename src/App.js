@@ -10,14 +10,14 @@ import Login from './pages/login/login.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({ currentUser: null });
 
   let unsubscribeFromAuth = null;
 
   useEffect(() => {
     unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       console.log(userAuth);
-      console.log(userAuth.displayName);
+
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
@@ -40,7 +40,7 @@ function App() {
 
   return (
     <div className='App'>
-      <Header currentUser={currentUser} />
+      <Header currentUser={currentUser.currentUser} />
       <Switch>
         <Route exact path='/' component={HomePage} />
         <Route path='/cart' component={Cart} />

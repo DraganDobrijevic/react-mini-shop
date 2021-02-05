@@ -14,7 +14,7 @@ import InfoNav from '../info-nav/info-nav.component';
 
 const Header = ({ currentUser }) => {
   console.log(currentUser);
-  const [infoNav, setInfoNav] = useState([
+  const [infoNav] = useState([
     {
       id: 1,
       name: 'About Us',
@@ -94,13 +94,13 @@ const Header = ({ currentUser }) => {
           <Link className='option' to='/register'>
             Register
           </Link>
-          {currentUser !== null ? (
+          {currentUser ? (
             <div className='option' onClick={() => auth.signOut()}>
-              Sing Out + {currentUser.displayName}
+              Sing Out
             </div>
           ) : (
             <Link className='option' to='/login'>
-              Sign In + {currentUser.displayName}
+              Sign In
             </Link>
           )}
         </div>

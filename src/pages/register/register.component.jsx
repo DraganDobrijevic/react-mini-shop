@@ -5,7 +5,7 @@ import CustomButton from '../../components/custom-button/custom-button.component
 
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
-import './register-login.styles.scss';
+// import './register-login.styles.scss';
 import './sign-up.styles.scss';
 
 const Register = () => {
