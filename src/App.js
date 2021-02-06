@@ -8,6 +8,7 @@ import Footer from './components/footer/footer.component';
 import Register from './pages/register/register.component';
 import Login from './pages/login/login.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import ForgotPassword from './components/forgot-password/forgot-password.component';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({ currentUser: null });
@@ -46,6 +47,7 @@ function App() {
         <Route path='/cart' component={Cart} />
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
+        <Route path='/forgot-password' component={ForgotPassword} />
         {/* <Route exact path='/' exact>
             <Slider />
             <FeaturedCategory />

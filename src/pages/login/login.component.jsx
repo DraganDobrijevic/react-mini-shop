@@ -5,6 +5,9 @@ import CustomButton from '../../components/custom-button/custom-button.component
 
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
+import { Link, useHistory } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
+
 // import './register-login.styles.scss';
 import './sign-in.styles.scss';
 
@@ -13,6 +16,8 @@ const Login = () => {
     email: '',
     password: '',
   });
+  const history = useHistory();
+  const [error, setError] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,8 +28,9 @@ const Login = () => {
         emailAndPassword.password
       );
       setEmailAndPassword({ email: '', password: '' });
+      history.push('/');
     } catch (error) {
-      alert(error.message);
+      setError(error.message);
       console.log(error);
     }
   };
@@ -38,6 +44,7 @@ const Login = () => {
     <div className='sign-in'>
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
+      {error && <Alert variant='danger'>{error}</Alert>}
 
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -58,9 +65,21 @@ const Login = () => {
         />
         <div className='buttons'>
           <CustomButton type='submit'> Sign in </CustomButton>
-          <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+          <CustomButton
+            onClick={async () => {
+              await signInWithGoogle();
+              history.push('/');
+            }}
+            isGoogleSignIn
+          >
             Sign in with Google
           </CustomButton>
+        </div>
+        <div className='log-reg'>
+          <Link to='forgot-password'>Forgot Password?</Link>
+        </div>
+        <div className='log-reg'>
+          Need an account? <Link to='register'>Register</Link>
         </div>
       </form>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { auth } from '../../firebase/firebase.utils';
 
@@ -79,6 +79,9 @@ const Header = ({ currentUser }) => {
       ],
     },
   ]);
+
+  const history = useHistory();
+
   return (
     <div className='header'>
       <div className='top-nav-bar'>
@@ -95,7 +98,13 @@ const Header = ({ currentUser }) => {
             Register
           </Link>
           {currentUser ? (
-            <div className='option' onClick={() => auth.signOut()}>
+            <div
+              className='option'
+              onClick={async () => {
+                await auth.signOut();
+                history.push('/login');
+              }}
+            >
               Sing Out
             </div>
           ) : (

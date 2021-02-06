@@ -5,6 +5,9 @@ import CustomButton from '../../components/custom-button/custom-button.component
 
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
+import { Link, useHistory } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
+
 // import './register-login.styles.scss';
 import './sign-up.styles.scss';
 
@@ -15,6 +18,8 @@ const Register = () => {
     password: '',
     confirmPassword: '',
   });
+  const history = useHistory();
+  const [error, setError] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +27,7 @@ const Register = () => {
     const { displayName, email, password, confirmPassword } = registerInfo;
 
     if (password !== confirmPassword) {
-      alert("passwords don't match");
+      setError("passwords don't match");
       return;
     }
 
@@ -42,8 +47,9 @@ const Register = () => {
         password: '',
         confirmPassword: '',
       });
+      history.push('/login');
     } catch (error) {
-      alert(error.message);
+      setError(error.message);
       console.error(error.message);
     }
   };
@@ -60,6 +66,7 @@ const Register = () => {
     <div className='sign-up'>
       <h2 className='title'>I do not have a account</h2>
       <span>Sign up with your email and password</span>
+      {error && <Alert variant='danger'>{error}</Alert>}
       <form className='sign-up-form' onSubmit={handleSubmit}>
         <FormInput
           type='text'
@@ -94,6 +101,9 @@ const Register = () => {
           required
         />
         <CustomButton type='submit'>SIGN UP</CustomButton>
+        <div className='log-reg'>
+          Already have an account? <Link to='login'>Sign In</Link>
+        </div>
       </form>
     </div>
     // <div className='boxRegister'>
