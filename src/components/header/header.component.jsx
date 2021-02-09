@@ -13,7 +13,7 @@ import ProductsNav from '../products-nav/products-nav.component';
 import InfoNav from '../info-nav/info-nav.component';
 
 const Header = ({ currentUser }) => {
-  console.log(currentUser);
+  console.log('Header:', currentUser);
   const [infoNav] = useState([
     {
       id: 1,

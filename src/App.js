@@ -13,26 +13,42 @@ import ForgotPassword from './components/forgot-password/forgot-password.compone
 function App() {
   const [currentUser, setCurrentUser] = useState({ currentUser: null });
 
-  let unsubscribeFromAuth = null;
+  // let unsubscribeFromAuth = null;
 
   useEffect(() => {
-    unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      console.log(userAuth);
+    let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      console.log('onAuthStateChanged: userAuth', userAuth);
 
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
         userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data(),
-            },
-          });
+          console.log(
+            'onSnapshot we doesnt have any properties, just id',
+            snapShot
+          );
+          console.log(
+            'onSnapshot.data() to see our data, no id',
+            snapShot.data()
+          );
+          setCurrentUser(
+            {
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data(),
+              },
+            }
+            // Set state is asynchronous and we have to pass the function as second parameter to see the data in console.log
+            // () => {
+            //   console.log('check for currentUser:', currentUser);
+            // }
+          );
         });
+      } else {
+        // When the user logs out
+        // Set currentUser to null
+        setCurrentUser({ currentUser: userAuth });
       }
-
-      setCurrentUser({ currentUser: userAuth });
     });
     return () => {
       unsubscribeFromAuth();

@@ -7,7 +7,7 @@ import photo3 from '../../assets/img/shop-5.jpg';
 
 const Slider = () => {
   return (
-    <Carousel className='slider'>
+    <Carousel className='slider' slide={false}>
       <Carousel.Item>
         <img className='d-block w-100' src={photo1} alt='First slide' />
         <Carousel.Caption>

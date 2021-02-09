@@ -20,6 +20,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
+  console.log('query for userRef', userRef);
 
   const snapShot = await userRef.get();
 
@@ -40,6 +41,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   return userRef;
 };
+
+export const resetPassword = (email) => auth.sendPasswordResetEmail(email);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
