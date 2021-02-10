@@ -50,7 +50,6 @@ const Register = () => {
       history.push('/login');
     } catch (error) {
       setError(error.message);
-      console.error(error.message);
     }
   };
 

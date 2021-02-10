@@ -66,6 +66,7 @@ const Login = () => {
         <div className='buttons'>
           <CustomButton type='submit'> Sign in </CustomButton>
           <CustomButton
+            type='button'
             onClick={async () => {
               await signInWithGoogle();
               history.push('/');
