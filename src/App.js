@@ -1,5 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setCurrentUser } from './redux/user/user.actions';
+import { connect } from 'react-redux';
+
 import './App.css';
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
@@ -10,9 +14,11 @@ import Login from './pages/login/login.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import ForgotPassword from './components/forgot-password/forgot-password.component';
 
-function App() {
-  const [currentUser, setCurrentUser] = useState({ currentUser: null });
+function App({ currentUser }) {
+  const dispatch = useDispatch();
+  const setCurrentUserF = (user) => dispatch(setCurrentUser(user));
 
+  // const [currentUser, setCurrentUser] = useState({ currentUser: null });
   // let unsubscribeFromAuth = null;
 
   useEffect(() => {
@@ -31,38 +37,42 @@ function App() {
             'onSnapshot.data() to see our data, no id',
             snapShot.data()
           );
-          setCurrentUser(
-            {
-              currentUser: {
-                id: snapShot.id,
-                ...snapShot.data(),
-              },
-            }
-            // Set state is asynchronous and we have to pass the function as second parameter to see the data in console.log
-            // () => {
-            //   console.log('check for currentUser:', currentUser);
-            // }
-          );
+
+          setCurrentUserF({
+            id: snapShot.id,
+            ...snapShot.data(),
+          });
         });
       } else {
         // When the user logs out
         // Set currentUser to null
-        setCurrentUser({ currentUser: userAuth });
+        setCurrentUserF(userAuth);
       }
     });
     return () => {
       unsubscribeFromAuth();
     };
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div className='App'>
-      <Header currentUser={currentUser.currentUser} />
+      <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
         <Route path='/cart' component={Cart} />
-        <Route path='/register' component={Register} />
-        <Route path='/login' component={Login} />
+        {/* <Route path='/register' component={Register} /> */}
+        {/* <Route path='/login' component={Login} /> */}
+        <Route
+          exact
+          path='/register'
+          render={() => (currentUser ? <Redirect to='/' /> : <Register />)}
+        />
+        <Route
+          exact
+          path='/login'
+          render={() => (currentUser ? <Redirect to='/' /> : <Login />)}
+        />
         <Route path='/forgot-password' component={ForgotPassword} />
         {/* <Route exact path='/' exact>
             <Slider />
@@ -80,4 +90,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser,
+});
+
+export default connect(mapStateToProps)(App);

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 import { auth } from '../../firebase/firebase.utils';
 
@@ -14,6 +16,8 @@ import InfoNav from '../info-nav/info-nav.component';
 
 const Header = ({ currentUser }) => {
   console.log('Header:', currentUser);
+  // const query = useSelector((state) => state);
+  // console.log('Header:', query);
   const [infoNav] = useState([
     {
       id: 1,
@@ -90,12 +94,14 @@ const Header = ({ currentUser }) => {
           <span className='logo-text'>Mini Shop</span>
         </Link>
         <div className='options'>
+          {currentUser && (
+            <span className='option option-text'>
+              {currentUser.displayName}
+            </span>
+          )}
           <Link className='option' to='/cart'>
             <FaShoppingBasket />
             <span className='option-text'>cart</span>
-          </Link>
-          <Link className='option' to='/register'>
-            Register
           </Link>
           {currentUser ? (
             <div
@@ -108,9 +114,14 @@ const Header = ({ currentUser }) => {
               Sing Out
             </div>
           ) : (
-            <Link className='option' to='/login'>
-              Sign In
-            </Link>
+            <>
+              <Link className='option' to='/register'>
+                Register
+              </Link>
+              <Link className='option' to='/login'>
+                Sign In
+              </Link>
+            </>
           )}
         </div>
       </div>
@@ -132,4 +143,8 @@ const Header = ({ currentUser }) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+export default connect(mapStateToProps)(Header);
