@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import OnSale from '../on-sale/on-sale.component';
+import SHOP_DATA from './shop.data.js';
 
 import './featured-category.styles.scss';
 
@@ -7,6 +10,8 @@ import photofc2 from '../../assets/img/watch.jpg';
 import photofc3 from '../../assets/img/shoes.jpg';
 
 const FeaturedCategory = () => {
+  const [state] = useState({ collections: SHOP_DATA });
+  const { collections } = state;
   return (
     <div className='featured-categories'>
       <div className='container'>
@@ -22,7 +27,9 @@ const FeaturedCategory = () => {
           </div>
         </div>
       </div>
-      <OnSale />
+      {collections.map(({ id, ...otherCollectionProps }) => (
+        <OnSale key={id} {...otherCollectionProps} />
+      ))}
     </div>
   );
 };

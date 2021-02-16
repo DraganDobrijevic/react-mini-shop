@@ -9,12 +9,12 @@ import { ReactComponent as Logo } from '../../assets/logo.svg';
 
 import './header.styles.scss';
 
-import { FaShoppingBasket } from 'react-icons/fa';
-
 import ProductsNav from '../products-nav/products-nav.component';
 import InfoNav from '../info-nav/info-nav.component';
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
   console.log('Header:', currentUser);
   // const query = useSelector((state) => state);
   // console.log('Header:', query);
@@ -99,10 +99,10 @@ const Header = ({ currentUser }) => {
               {currentUser.displayName}
             </span>
           )}
-          <Link className='option' to='/cart'>
-            <FaShoppingBasket />
-            <span className='option-text'>cart</span>
-          </Link>
+          <div className='option'>
+            <CartIcon />
+          </div>
+          {hidden ? null : <CartDropdown />}
           {currentUser ? (
             <div
               className='option'
@@ -143,8 +143,13 @@ const Header = ({ currentUser }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+// const mapStateToProps = (state) => ({
+//   currentUser: state.user.currentUser,
+// });
+
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 
 export default connect(mapStateToProps)(Header);
