@@ -12,16 +12,12 @@ const Item = ({ item, addItem, photo }) => {
       <div className='product-top'>
         <img src={imageUrl} alt='' />
         <div className='overlay-right'>
-          <button
-            type='button'
-            className='btn btn-secondary'
-            title='Quick Shop'
-          >
+          <button type='button' className='btn' title='Quick Shop'>
             <FaEye className='fas' />
           </button>
           <button
             type='button'
-            className='btn btn-secondary'
+            className='btn'
             title='Add to Cart'
             onClick={() => addItem(item)}
           >

@@ -1,27 +1,20 @@
-import React from 'react';
+import { useState } from 'react';
 import './products-nav.styles.scss';
+import SHOP_DATA from '../featured-category/shop.data';
 
 const ProductsNav = ({ name }) => {
+  const [state] = useState({ products: SHOP_DATA });
+  const { products } = state;
   return (
     <div id='productsX'>
       <div className='nav-item'>{name}</div>
       <div className='productsX nav-links'>
         <ul className='smooth_s'>
-          <li>
-            <a href='/index.html#onSale'>On Sale</a>
-          </li>
-          <li>
-            <a href='/index.html#newArrivals'>New Arrivals</a>
-          </li>
-          <li>
-            <a href='/index.html#watches'>Watches</a>
-          </li>
-          <li>
-            <a href='/index.html#rings'>Rings</a>
-          </li>
-          <li>
-            <a href='/index.html#suits'>Suits</a>
-          </li>
+          {products.map((product) => (
+            <li key={product.id}>
+              <a href='/index.html#onSale'>{product.title}</a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
