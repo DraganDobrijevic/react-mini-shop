@@ -1,15 +1,11 @@
 .sign-up {
   margin: 0 auto;
-  height: calc(100vh - 400px);
   padding: 20px;
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 359px);
   width: 400px;
   text-align: center;
-
-  .title {
-    margin: 10px 0;
-  }
 
   .log-reg {
     margin-top: 10px;

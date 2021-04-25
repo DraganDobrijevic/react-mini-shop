@@ -1,6 +1,4 @@
 footer {
-  height: 250px;
-  margin-top: 50px;
   background-color: #071849;
   color: #fff;
 
@@ -18,7 +16,6 @@ footer {
   }
 
   hr {
-    margin-top: 10px;
     background-color: #ccc;
   }
 
@@ -32,8 +29,14 @@ footer {
 }
 
 .copyright {
-  // margin-bottom: -80px;
   text-align: center;
   font-size: 15px;
-  // padding-bottom: 20px;
+  padding-bottom: 1rem;
+  margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .col-md-3 {
+    text-align: center;
+  }
 }

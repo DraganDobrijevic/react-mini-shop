@@ -8,7 +8,7 @@ import { FaYoutube } from 'react-icons/fa';
 const Footer = () => {
   return (
     <footer>
-      <div className='container text-left'>
+      <div className='container'>
         <div className='row'>
           <div className='col-md-3'>
             <h1>Useful Links</h1>

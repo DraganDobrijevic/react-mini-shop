@@ -5,10 +5,8 @@ import { setCurrentUser } from './redux/user/user.actions';
 import { connect } from 'react-redux';
 
 import './App.css';
-import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import Cart from './pages/cart/cart.component';
-import Footer from './components/footer/footer.component';
 import Register from './pages/register/register.component';
 import Login from './pages/login/login.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
@@ -57,7 +55,6 @@ function App({ currentUser }) {
 
   return (
     <div className='App'>
-      <Header />
       <Switch>
         <Route exact path='/' component={HomePage} />
         <Route path='/cart' component={Cart} />
@@ -85,7 +82,6 @@ function App({ currentUser }) {
             <Login />
           </Route> */}
       </Switch>
-      <Footer />
     </div>
   );
 }

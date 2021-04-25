@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { useSelector } from 'react-redux';
 
@@ -27,10 +27,10 @@ const Header = ({ currentUser, hidden }) => {
   return (
     <div className='header'>
       <div className='top-nav-bar'>
-        <Link className='logo-container' to='/'>
+        <NavLink className='logo-container' to='/'>
           <Logo className='logo' alt='logo' />
           <span className='logo-text'>Mini Shop</span>
-        </Link>
+        </NavLink>
         <div className='options'>
           {currentUser && (
             <span className='option option-text'>
@@ -53,12 +53,20 @@ const Header = ({ currentUser, hidden }) => {
             </div>
           ) : (
             <>
-              <Link className='option' to='/register'>
+              <NavLink
+                className='option'
+                activeClassName='option--active'
+                to='/register'
+              >
                 Register
-              </Link>
-              <Link className='option' to='/login'>
+              </NavLink>
+              <NavLink
+                className='option'
+                activeClassName='option--active'
+                to='/login'
+              >
                 Sign In
-              </Link>
+              </NavLink>
             </>
           )}
         </div>
