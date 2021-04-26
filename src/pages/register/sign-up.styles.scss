@@ -1,10 +1,10 @@
 .sign-up {
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 5px;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 359px);
-  width: 400px;
+  min-height: calc(100vh - 359px);
+  max-width: 400px;
   text-align: center;
 
   .log-reg {

@@ -67,6 +67,7 @@
         cursor: pointer;
         color: #fff;
         font-weight: bold;
+        white-space: nowrap;
 
         &--active {
           background-color: #063564;
@@ -110,10 +111,37 @@
       .options {
         width: 100%;
         justify-content: center;
+        padding: 5px 0px;
       }
 
       .option {
-        padding: 5px 20px;
+        padding: 5px 10px;
+      }
+    }
+
+    .bottom-nav-bar {
+      display: none;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .top-nav-bar {
+      height: 60%;
+      width: 100%;
+      flex-direction: column;
+
+      .logo-container {
+        justify-content: center;
+      }
+
+      .options {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .option {
+        padding: 5px 10px !important;
+        font-weight: 500 !important;
       }
     }
 

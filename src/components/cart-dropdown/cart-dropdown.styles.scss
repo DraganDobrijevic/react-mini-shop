@@ -1,7 +1,6 @@
 .cart-dropdown {
   position: absolute;
-  width: 300px;
-  height: 400px;
+  max-height: 400px;
   display: flex;
   flex-direction: column;
   padding: 25px;
@@ -25,7 +24,40 @@
     color: white;
   }
 
+  .cart-item {
+    min-height: 60%;
+    min-width: 70%;
+    color: white;
+  }
+
   button {
     margin-top: auto;
+  }
+}
+
+@media (max-width: 1200px) {
+  .cart-dropdown {
+    padding: 25px;
+    top: 110px;
+    right: 50px;
+  }
+}
+
+@media (max-width: 800px) {
+  .cart-dropdown {
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 300px;
+    height: 400px;
+    display: flex;
+    padding: 25px;
+
+    .cart-item {
+      color: white;
+
+      img {
+        width: 50%;
+      }
+    }
   }
 }

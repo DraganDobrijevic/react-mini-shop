@@ -35,5 +35,38 @@
 @media (max-width: 1200px) {
   .cart-page {
     width: 100%;
+    padding: 2rem;
+
+    .total {
+      margin-top: 30px;
+      margin-left: auto;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .cart-page {
+    width: 100%;
+    padding: 0.8rem;
+
+    .cart-header {
+      width: 100%;
+      padding: 10px 0;
+
+      .header-block {
+        width: auto;
+
+        &:last-child {
+          width: auto;
+        }
+      }
+    }
+
+    .total {
+      margin-top: 30px;
+      margin-left: auto;
+      font-size: 1.2rem;
+    }
   }
 }

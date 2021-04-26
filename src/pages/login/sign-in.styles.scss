@@ -1,8 +1,8 @@
 .sign-in {
   margin: 0 auto;
-  height: calc(100vh - 359px);
+  min-height: calc(100vh - 359px);
   padding: 50px 10px;
-  width: 450px;
+  max-width: 450px;
   display: flex;
   flex-direction: column;
   justify-content: center;
