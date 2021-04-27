@@ -1,8 +1,8 @@
 .sign-in {
   margin: 0 auto;
   min-height: calc(100vh - 359px);
-  padding: 50px 10px;
-  max-width: 450px;
+  padding: 50px 25px;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,5 +20,18 @@
   .log-reg {
     margin-top: 10px;
     width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .sign-in {
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

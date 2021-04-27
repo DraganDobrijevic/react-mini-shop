@@ -66,7 +66,7 @@ const Register = () => {
     <>
       <Header />
       <div className='sign-up'>
-        <h2 className='title'>I do not have a account</h2>
+        <h2 className='title'>I don't have an account</h2>
         <span>Sign up with your email and password</span>
         {error && <Alert variant='danger'>{error}</Alert>}
         <form className='sign-up-form' onSubmit={handleSubmit}>
