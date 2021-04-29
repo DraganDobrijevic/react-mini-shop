@@ -12,6 +12,9 @@ import Login from './pages/login/login.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import ForgotPassword from './components/forgot-password/forgot-password.component';
 
+import { selectCurrentUser } from './redux/user/user.selectors';
+import { createStructuredSelector } from 'reselect';
+
 function App({ currentUser }) {
   const dispatch = useDispatch();
   const setCurrentUserF = (user) => dispatch(setCurrentUser(user));
@@ -28,7 +31,7 @@ function App({ currentUser }) {
 
         userRef.onSnapshot((snapShot) => {
           console.log(
-            'onSnapshot we doesnt have any properties, just id',
+            'onSnapshot we dont have any properties, just id',
             snapShot
           );
           console.log(
@@ -86,8 +89,18 @@ function App({ currentUser }) {
   );
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser,
+// const mapStateToProps = ({ user }) => ({
+//   currentUser: user.currentUser,
+// });
+
+// with selectors
+// const mapStateToProps = (state) => ({
+//   currentUser: selectCurrentUser(state),
+// });
+
+// with selectors and createStructuredSelector
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
 });
 
 export default connect(mapStateToProps)(App);

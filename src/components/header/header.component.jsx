@@ -16,6 +16,10 @@ import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 import NAV_INFO_DATA from './nav-info.data';
 
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
+
 const Header = ({ currentUser, hidden }) => {
   console.log('Header:', currentUser);
   // const query = useSelector((state) => state);
@@ -93,9 +97,21 @@ const Header = ({ currentUser, hidden }) => {
 //   currentUser: state.user.currentUser,
 // });
 
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+// const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+//   currentUser,
+//   hidden,
+// });
+
+// with selectors
+// const mapStateToProps = (state) => ({
+//   currentUser: selectCurrentUser(state),
+//   hidden: selectCartHidden(state),
+// });
+
+// with selectors and createStructuredSelector
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 export default connect(mapStateToProps)(Header);
